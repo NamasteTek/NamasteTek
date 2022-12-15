@@ -462,32 +462,62 @@
             </div>
             <div class="col-xl-6 col-lg-7 col-12">
               <div class="form-wrapper">
-                <form action="#" class="theme-form-one">
+                <form class="theme-form-one" onsubmit="return validateForm()">
                   <div class="row">
                     <div class="col-md-6">
-                      <input type="text" placeholder="Name *" />
+                      <input
+                        type="text"
+                        placeholder="Name *"
+                        name="Name"
+                        required
+                      />
                     </div>
                     <div class="col-md-6">
-                      <input type="text" placeholder="Phone *" />
+                      <input
+                        type="text"
+                        placeholder="Phone *"
+                        name="Phone"
+                        required
+                      />
                     </div>
                     <div class="col-md-6">
-                      <input type="email" placeholder="Email *" />
+                      <input
+                        type="email"
+                        placeholder="Email *"
+                        name="Email"
+                        required
+                      />
                     </div>
                     <div class="col-md-6">
-                      <select class="form-control" id="exampleSelect1">
+                      <select
+                        class="form-control"
+                        id="exampleSelect1"
+                        name="Service"
+                      >
                         <option>Service you’re looking for?</option>
                         <option>Business Services</option>
                         <option>Financial Services</option>
-                        <option>Software Research</option>
+                        <option>IT training</option>
+                        <option>Job placement</option>
                       </select>
                     </div>
                     <div class="col-12">
-                      <textarea placeholder="Message"></textarea>
+                      <textarea placeholder="Message" name="Message"></textarea>
                     </div>
                   </div>
-                  <!-- /.row -->
-                  <button class="theme-button-one">GET A QUOTES</button>
+                  <button type="submit" class="theme-button-one">
+                    GET A QUOTE
+                  </button>
                 </form>
+                <!-- <form onsubmit="return validateForm()">
+                  <label for="name">Name:</label>
+                  <input type="text" id="name" name="Name" required />
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="Email" required />
+                  <label for="message">Message:</label>
+                  <textarea id="message" name="Message" required></textarea>
+                  <input type="submit" value="Send" />
+                </form> -->
               </div>
               <!-- /.form-wrapper -->
             </div>
@@ -590,6 +620,32 @@
 
       <!-- Theme js -->
       <script src="js/theme.js"></script>
+      <script>
+        function validateForm() {
+          // Get the form element
+          var form = document.querySelector("form");
+
+          // Check if the form is valid
+          if (form.checkValidity()) {
+            // If the form is valid, construct the mailto: URL
+            var url =
+              "mailto:team@namastetek.com?subject=Get%20Quote&body=Name:%20" +
+              form.elements.Name.value +
+              "%0D%0AEmail:%20" +
+              form.elements.Email.value +
+              "%0D%0APhone:%20" +
+              form.elements.Phone.value +
+              "%0D%0AService:%20" +
+              form.elements.Service.value +
+              "%0D%0AMessage:%20" +
+              form.elements.Message.value;
+            window.location = url;
+          }
+
+          // Return the form validation result
+          return form.checkValidity();
+        }
+      </script>
     </div>
     <!-- /.main-page-wrapper -->
   </body>
